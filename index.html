@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project P.U.P</title>
+  <style>
+    @font-face {
+      font-family: 'CustomFont';
+      src: url('assets/font.ttf') format('truetype');
+    }
+
+    body {
+      margin: 0;
+      font-family: 'CustomFont', sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .logo {
+      width: 50vw;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .text {
+      margin-bottom: 20px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .timer {
+      display: flex;
+      gap: 20px;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .unit {
+      text-align: center;
+    }
+
+    .label {
+      font-size: 14px;
+      margin-top: 4px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <img src="assets/logo.png" alt="Logo" class="logo" />
+  <div class="text">In development since 14/05/2025 (05/14/2025 | USA Date.)</div>
+
+  <div class="timer" id="timer">
+    <div class="unit">
+      <div id="years">00</div>
+      <div class="label">Years</div>
+    </div>
+    <div class="unit">
+      <div id="months">00</div>
+      <div class="label">Months</div>
+    </div>
+    <div class="unit">
+      <div id="days">00</div>
+      <div class="label">Days</div>
+    </div>
+    <div class="unit">
+      <div id="minutes">00</div>
+      <div class="label">Minutes</div>
+    </div>
+    <div class="unit">
+      <div id="seconds">00</div>
+      <div class="label">Seconds</div>
+    </div>
+  </div>
+
+  <script>
+    const startDate = new Date("2025-05-14T00:00:00");
+
+    function updateTimer() {
+      const now = new Date();
+
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
+      let hours = now.getHours() - startDate.getHours();
+      let minutes = now.getMinutes() - startDate.getMinutes();
+      let seconds = now.getSeconds() - startDate.getSeconds();
+
+      if (seconds < 0) {
+        seconds += 60;
+        minutes--;
+      }
+      if (minutes < 0) {
+        minutes += 60;
+        hours--;
+      }
+      if (days < 0) {
+        months--;
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById("years").textContent = String(years).padStart(2, "0");
+      document.getElementById("months").textContent = String(months).padStart(2, "0");
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
