@@ -570,8 +570,8 @@
           const nextIndex = (currentIndex + 1) % langKeys.length;
           const nextLangName = translations[langKeys[nextIndex]].name;
 
-          langSwitcherBtn.textContent = nextLangName;
-          langSwitcherBtn.title = `Switch language (Current: ${t.name})`;
+          langSwitcherBtn.textContent = t.name;
+          langSwitcherBtn.title = `Switch language to ${nextLangName}`;
         }
 
         function updateTimers() {
