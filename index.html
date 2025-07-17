@@ -504,8 +504,10 @@
           seconds: "useconds",
         };
 
-        let currentLang = localStorage.getItem("lang") || "en";
-
+        const navLang = navigator.language || navigator.userLanguage || 'en';
+        const shortLang = navLang.substring(0, 2).toLowerCase();
+        let currentLang = translations[shortLang] ? shortLang : 'en';
+      
         function diffDetailed(start, end) {
           let years = end.getUTCFullYear() - start.getUTCFullYear();
           let months = end.getUTCMonth() - start.getUTCMonth();
@@ -599,7 +601,6 @@
           let currentIndex = langKeys.indexOf(currentLang);
           currentIndex = (currentIndex + 1) % langKeys.length;
           currentLang = langKeys[currentIndex];
-          localStorage.setItem("lang", currentLang);
           updateTexts();
           updateTimers();
         });
