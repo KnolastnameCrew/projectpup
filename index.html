@@ -402,7 +402,7 @@
         he: {
           name: "עברית (Hebrew)",
           developmentText:
-            "בתהליך פיתוח מאז 14/05/2025 (05/14/2025 | תאריך ארה\"ב)",
+            'בתהליך פיתוח מאז 14/05/2025 (05/14/2025 | תאריך ארה"ב)',
           subtitleGMT: "מונה התייחסות GMT-0",
           labels: {
             years: "שנים",
@@ -477,10 +477,11 @@
           footer: (offset, tz) => `Folosind GMT${offset} (${tz})`,
           localTimezoneText: "fusul tău orar local",
         },
-      }; 
+      };
 
       (() => {
-        const startDate = new Date(Date.UTC(2025, 4, 14));
+        const startDateUTC = new Date(Date.UTC(2025, 4, 14));
+        const startDateLocal = new Date(2025, 4, 14);
 
         const developmentTextEl = document.getElementById("developmentText");
         const subtitleGMTEl = document.getElementById("subtitleGMT");
@@ -504,17 +505,24 @@
           seconds: "useconds",
         };
 
-        const navLang = navigator.language || navigator.userLanguage || 'en';
+        const navLang = navigator.language || navigator.userLanguage || "en";
         const shortLang = navLang.substring(0, 2).toLowerCase();
-        let currentLang = translations[shortLang] ? shortLang : 'en';
-      
-        function diffDetailed(start, end) {
-          let years = end.getUTCFullYear() - start.getUTCFullYear();
-          let months = end.getUTCMonth() - start.getUTCMonth();
-          let days = end.getUTCDate() - start.getUTCDate();
-          let hours = end.getUTCHours() - start.getUTCHours();
-          let minutes = end.getUTCMinutes() - start.getUTCMinutes();
-          let seconds = end.getUTCSeconds() - start.getUTCSeconds();
+        let currentLang = translations[shortLang] ? shortLang : "en";
+
+        function diffDetailed(start, end, useUTC = true) {
+          const getYear = useUTC ? "getUTCFullYear" : "getFullYear";
+          const getMonth = useUTC ? "getUTCMonth" : "getMonth";
+          const getDate = useUTC ? "getUTCDate" : "getDate";
+          const getHours = useUTC ? "getUTCHours" : "getHours";
+          const getMinutes = useUTC ? "getUTCMinutes" : "getMinutes";
+          const getSeconds = useUTC ? "getUTCSeconds" : "getSeconds";
+
+          let years = end[getYear]() - start[getYear]();
+          let months = end[getMonth]() - start[getMonth]();
+          let days = end[getDate]() - start[getDate]();
+          let hours = end[getHours]() - start[getHours]();
+          let minutes = end[getMinutes]() - start[getMinutes]();
+          let seconds = end[getSeconds]() - start[getSeconds]();
 
           if (seconds < 0) {
             seconds += 60;
@@ -529,8 +537,10 @@
             days--;
           }
           if (days < 0) {
-            const prevMonth = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), 0));
-            days += prevMonth.getUTCDate();
+            const prevMonth = useUTC
+              ? new Date(Date.UTC(end[getYear](), end[getMonth](), 0))
+              : new Date(end[getYear](), end[getMonth](), 0);
+            days += prevMonth[getDate]();
             months--;
           }
           if (months < 0) {
@@ -545,7 +555,9 @@
           for (const unit in values) {
             const el = document.getElementById(ids[unit]);
             if (el) el.textContent = values[unit].toString().padStart(2, "0");
-            const labelEl = document.getElementById("label-" + unit + (ids === localIds ? "-local" : "-utc"));
+            const labelEl = document.getElementById(
+              "label-" + unit + (ids === localIds ? "-local" : "-utc")
+            );
             if (labelEl) labelEl.textContent = labels[unit];
           }
         }
@@ -559,9 +571,12 @@
 
           const tzOffsetMinutes = new Date().getTimezoneOffset();
           const offsetHours = -tzOffsetMinutes / 60;
-          const offsetStr = offsetHours >= 0 ? "+" + offsetHours : offsetHours.toString();
+          const offsetStr =
+            offsetHours >= 0 ? "+" + offsetHours : offsetHours.toString();
 
-          const timeZoneName = Intl.DateTimeFormat().resolvedOptions().timeZone || t.localTimezoneText;
+          const timeZoneName =
+            Intl.DateTimeFormat().resolvedOptions().timeZone ||
+            t.localTimezoneText;
 
           footerEl.textContent = t.footer(offsetStr, timeZoneName);
 
@@ -577,17 +592,19 @@
         function updateTimers() {
           const now = new Date();
 
-          const diffLocal = diffDetailed(startDate, now);
+          const diffLocal = diffDetailed(startDateLocal, now, false);
 
-          const nowUTC = new Date(Date.UTC(
-            now.getUTCFullYear(),
-            now.getUTCMonth(),
-            now.getUTCDate(),
-            now.getUTCHours(),
-            now.getUTCMinutes(),
-            now.getUTCSeconds()
-          ));
-          const diffUTC = diffDetailed(startDate, nowUTC);
+          const nowUTC = new Date(
+            Date.UTC(
+              now.getUTCFullYear(),
+              now.getUTCMonth(),
+              now.getUTCDate(),
+              now.getUTCHours(),
+              now.getUTCMinutes(),
+              now.getUTCSeconds()
+            )
+          );
+          const diffUTC = diffDetailed(startDateUTC, nowUTC, true);
 
           const t = translations[currentLang];
           if (!t) return;
