@@ -87,6 +87,7 @@
         transition: background-color 0.3s, color 0.3s;
         z-index: 9999;
         user-select: none;
+        white-space: nowrap;
       }
       #langSwitcher:hover {
         background: #fff;
@@ -157,12 +158,12 @@
       </div>
     </div>
 
-    <button id="langSwitcher" title="Switch language">EN</button>
+    <button id="langSwitcher" title="Switch language">Loading...</button>
 
     <script>
       const translations = {
         en: {
-          name: "EN",
+          name: "English (United States)",
           developmentText:
             "In development since 14/05/2025 (05/14/2025 | USA Date.)",
           subtitleGMT: "GMT-0 Reference Counter",
@@ -178,7 +179,7 @@
           localTimezoneText: "your local timezone",
         },
         pt: {
-          name: "PT",
+          name: "Português (Brasil)",
           developmentText:
             "Em desenvolvimento desde 14/05/2025 (05/14/2025 | Data EUA.)",
           subtitleGMT: "Contador de Referência GMT-0",
@@ -194,7 +195,7 @@
           localTimezoneText: "seu fuso horário local",
         },
         es: {
-          name: "ES",
+          name: "Español (España)",
           developmentText:
             "En desarrollo desde 14/05/2025 (05/14/2025 | Fecha USA.)",
           subtitleGMT: "Contador de Referencia GMT-0",
@@ -210,7 +211,7 @@
           localTimezoneText: "su zona horaria local",
         },
         fr: {
-          name: "FR",
+          name: "Français (France)",
           developmentText:
             "En développement depuis le 14/05/2025 (05/14/2025 | Date USA.)",
           subtitleGMT: "Compteur de Référence GMT-0",
@@ -226,7 +227,7 @@
           localTimezoneText: "votre fuseau horaire local",
         },
         de: {
-          name: "DE",
+          name: "Deutsch (Deutschland)",
           developmentText:
             "In Entwicklung seit 14.05.2025 (14.05.2025 | USA-Datum.)",
           subtitleGMT: "GMT-0 Referenzzähler",
@@ -242,7 +243,7 @@
           localTimezoneText: "Ihre lokale Zeitzone",
         },
         it: {
-          name: "IT",
+          name: "Italiano (Italia)",
           developmentText:
             "In sviluppo dal 14/05/2025 (05/14/2025 | Data USA.)",
           subtitleGMT: "Contatore di Riferimento GMT-0",
@@ -258,7 +259,7 @@
           localTimezoneText: "il tuo fuso orario locale",
         },
         ja: {
-          name: "JA",
+          name: "日本語 (Japan)",
           developmentText: "2025年5月14日より開発中 (05/14/2025 | 米国日付)",
           subtitleGMT: "GMT-0 参照カウンター",
           labels: {
@@ -273,7 +274,7 @@
           localTimezoneText: "あなたの現地時間帯",
         },
         ru: {
-          name: "RU",
+          name: "Русский (Russia)",
           developmentText: "В разработке с 14.05.2025 (14.05.2025 | дата США)",
           subtitleGMT: "Счетчик ссылки GMT-0",
           labels: {
@@ -288,7 +289,7 @@
           localTimezoneText: "ваша локальная временная зона",
         },
         zh: {
-          name: "ZH",
+          name: "中文 (China)",
           developmentText: "自2025年5月14日开始开发 (05/14/2025 | 美国日期)",
           subtitleGMT: "GMT-0 参考计数器",
           labels: {
@@ -303,7 +304,7 @@
           localTimezoneText: "您的本地时区",
         },
         ar: {
-          name: "AR",
+          name: "العربية (Arabic)",
           developmentText:
             "قيد التطوير منذ 14/05/2025 (05/14/2025 | التاريخ الأمريكي)",
           subtitleGMT: "عداد مرجعي GMT-0",
@@ -319,7 +320,7 @@
           localTimezoneText: "منطقة الوقت المحلية الخاصة بك",
         },
         ko: {
-          name: "KO",
+          name: "한국어 (Korea)",
           developmentText:
             "2025년 5월 14일부터 개발 중 (05/14/2025 | 미국 날짜)",
           subtitleGMT: "GMT-0 기준 카운터",
@@ -335,7 +336,7 @@
           localTimezoneText: "로컬 타임존",
         },
         nl: {
-          name: "NL",
+          name: "Nederlands (Netherlands)",
           developmentText:
             "In ontwikkeling sinds 14/05/2025 (05/14/2025 | VS datum)",
           subtitleGMT: "GMT-0 Referentieteller",
@@ -351,7 +352,7 @@
           localTimezoneText: "je lokale tijdzone",
         },
         tr: {
-          name: "TR",
+          name: "Türkçe (Turkey)",
           developmentText:
             "14/05/2025 tarihinden beri geliştirme aşamasında (05/14/2025 | ABD Tarihi)",
           subtitleGMT: "GMT-0 Referans Sayacı",
@@ -367,7 +368,7 @@
           localTimezoneText: "yerel zaman diliminiz",
         },
         pl: {
-          name: "PL",
+          name: "Polski (Poland)",
           developmentText:
             "W trakcie rozwoju od 14.05.2025 (14.05.2025 | Data USA)",
           subtitleGMT: "Licznik odniesienia GMT-0",
@@ -383,7 +384,7 @@
           localTimezoneText: "twoja lokalna strefa czasowa",
         },
         sv: {
-          name: "SV",
+          name: "Svenska (Sweden)",
           developmentText:
             "Under utveckling sedan 14/05/2025 (14/05/2025 | USA-datum)",
           subtitleGMT: "GMT-0 Referenstäknare",
@@ -399,9 +400,9 @@
           localTimezoneText: "din lokala tidszon",
         },
         he: {
-          name: "HE",
+          name: "עברית (Hebrew)",
           developmentText:
-            'בתהליך פיתוח מאז 14/05/2025 (05/14/2025 | תאריך ארה"ב)',
+            "בתהליך פיתוח מאז 14/05/2025 (05/14/2025 | תאריך ארה\"ב)",
           subtitleGMT: "מונה התייחסות GMT-0",
           labels: {
             years: "שנים",
@@ -415,7 +416,7 @@
           localTimezoneText: "אזור הזמן המקומי שלך",
         },
         hi: {
-          name: "HI",
+          name: "हिन्दी (Hindi)",
           developmentText: "14/05/2025 से विकासाधीन (05/14/2025 | यूएसए तिथि)",
           subtitleGMT: "GMT-0 संदर्भ काउंटर",
           labels: {
@@ -430,7 +431,7 @@
           localTimezoneText: "आपका स्थानीय समय क्षेत्र",
         },
         el: {
-          name: "EL",
+          name: "Ελληνικά (Greece)",
           developmentText:
             "Σε ανάπτυξη από 14/05/2025 (05/14/2025 | Ημερομηνία ΗΠΑ)",
           subtitleGMT: "Μετρητής Αναφοράς GMT-0",
@@ -446,7 +447,7 @@
           localTimezoneText: "η τοπική σας ζώνη ώρας",
         },
         cs: {
-          name: "CS",
+          name: "Čeština (Czech Republic)",
           developmentText: "Ve vývoji od 14.05.2025 (14.05.2025 | Datum USA)",
           subtitleGMT: "Referenční počítadlo GMT-0",
           labels: {
@@ -461,7 +462,7 @@
           localTimezoneText: "váš místní časový pásmo",
         },
         ro: {
-          name: "RO",
+          name: "Română (Romania)",
           developmentText:
             "În dezvoltare din 14/05/2025 (05/14/2025 | Data SUA)",
           subtitleGMT: "Contor de Referință GMT-0",
@@ -476,182 +477,137 @@
           footer: (offset, tz) => `Folosind GMT${offset} (${tz})`,
           localTimezoneText: "fusul tău orar local",
         },
-        hu: {
-          name: "HU",
-          developmentText:
-            "Fejlesztés alatt 2025.05.14. óta (05/14/2025 | USA dátum)",
-          subtitleGMT: "GMT-0 Referencia számláló",
-          labels: {
-            years: "Évek",
-            months: "Hónapok",
-            days: "Napok",
-            hours: "Órák",
-            minutes: "Percek",
-            seconds: "Másodpercek",
-          },
-          footer: (offset, tz) => `GMT${offset} használatával (${tz})`,
-          localTimezoneText: "helyi időzónád",
-        },
-        fi: {
-          name: "FI",
-          developmentText:
-            "Kehitteillä 14.05.2025 lähtien (05/14/2025 | USA päivämäärä)",
-          subtitleGMT: "GMT-0 Viite laskuri",
-          labels: {
-            years: "Vuodet",
-            months: "Kuukaudet",
-            days: "Päivät",
-            hours: "Tunnit",
-            minutes: "Minuutit",
-            seconds: "Sekunnit",
-          },
-          footer: (offset, tz) => `Käyttää GMT${offset} (${tz})`,
-          localTimezoneText: "paikallinen aikavyöhyke",
-        },
-      };
+      }; 
 
-      const supportedLangs = Object.keys(translations);
+      (() => {
+        const startDate = new Date(Date.UTC(2025, 4, 14));
 
-      let currentLang = (() => {
-        const navLang = (
-          navigator.language ||
-          navigator.userLanguage ||
-          "en"
-        ).toLowerCase();
-        const shortLang = navLang.split(/[-_]/)[0];
-        return supportedLangs.includes(shortLang) ? shortLang : "en";
-      })();
-      
-      const langSwitcherBtn = document.getElementById("langSwitcher");
+        const developmentTextEl = document.getElementById("developmentText");
+        const subtitleGMTEl = document.getElementById("subtitleGMT");
+        const footerEl = document.getElementById("footer");
+        const langSwitcherBtn = document.getElementById("langSwitcher");
 
-      function translatePage() {
-        const t = translations[currentLang];
-
-        document.documentElement.lang = currentLang;
-
-        document.getElementById("developmentText").textContent =
-          t.developmentText;
-        document.getElementById("subtitleGMT").textContent = t.subtitleGMT;
-
-        const labelsKeys = [
-          "years",
-          "months",
-          "days",
-          "hours",
-          "minutes",
-          "seconds",
-        ];
-        labelsKeys.forEach((key) => {
-          document.getElementById(`label-${key}-local`).textContent =
-            t.labels[key];
-          document.getElementById(`label-${key}-utc`).textContent =
-            t.labels[key];
-        });
-
-        langSwitcherBtn.textContent = t.name;
-
-        updateFooter();
-
-        updateAllTimes();
-      }
-
-      function updateFooter() {
-        const offset = -new Date().getTimezoneOffset() / 60;
-        const sign = offset >= 0 ? "+" : "";
-        let timeZone =
-          Intl.DateTimeFormat().resolvedOptions().timeZone ||
-          translations[currentLang].localTimezoneText;
-        if (timeZone.startsWith("Etc/GMT")) {
-          let s = timeZone.includes("-") ? "+" : "-";
-          let offsetNumber = timeZone
-            .replace("Etc/GMT", "")
-            .replace("-", "")
-            .replace("+", "");
-          timeZone = `GMT${s}${offsetNumber}`;
-        }
-        document.getElementById("footer").innerText = translations[
-          currentLang
-        ].footer(`${sign}${offset}`, timeZone);
-      }
-
-      const startDateLocal = new Date(2025, 4, 14, 0, 0, 0);
-      const startDateUTC = new Date(Date.UTC(2025, 4, 14, 0, 0, 0));
-
-      function calculateDiff(now, base) {
-        let years = now.getFullYear() - base.getFullYear();
-        let months = now.getMonth() - base.getMonth();
-        let days = now.getDate() - base.getDate();
-        let hours = now.getHours() - base.getHours();
-        let minutes = now.getMinutes() - base.getMinutes();
-        let seconds = now.getSeconds() - base.getSeconds();
-
-        if (seconds < 0) {
-          seconds += 60;
-          minutes--;
-        }
-        if (minutes < 0) {
-          minutes += 60;
-          hours--;
-        }
-        if (hours < 0) {
-          hours += 24;
-          days--;
-        }
-        if (days < 0) {
-          months--;
-          const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-          days += prevMonth.getDate();
-        }
-        if (months < 0) {
-          months += 12;
-          years--;
-        }
-
-        return { years, months, days, hours, minutes, seconds };
-      }
-
-      function updateAllTimes() {
-        const nowLocal = new Date();
-        const nowUTC = new Date(new Date().toISOString());
-
-        const l = calculateDiff(nowLocal, startDateLocal);
-        const u = calculateDiff(nowUTC, startDateUTC);
-
-        const ids = {
-          l: ["lyears", "lmonths", "ldays", "lhours", "lminutes", "lseconds"],
-          u: ["uyears", "umonths", "udays", "uhours", "uminutes", "useconds"],
+        const localIds = {
+          years: "lyears",
+          months: "lmonths",
+          days: "ldays",
+          hours: "lhours",
+          minutes: "lminutes",
+          seconds: "lseconds",
+        };
+        const utcIds = {
+          years: "uyears",
+          months: "umonths",
+          days: "udays",
+          hours: "uhours",
+          minutes: "uminutes",
+          seconds: "useconds",
         };
 
-        [l, u].forEach((data, i) => {
-          const prefix = i === 0 ? "l" : "u";
-          const values = [
-            data.years,
-            data.months,
-            data.days,
-            data.hours,
-            data.minutes,
-            data.seconds,
-          ];
-          values.forEach((val, j) => {
-            document.getElementById(ids[prefix][j]).textContent = String(
-              val
-            ).padStart(2, "0");
-          });
+        let currentLang = localStorage.getItem("lang") || "en";
+
+        function diffDetailed(start, end) {
+          let years = end.getUTCFullYear() - start.getUTCFullYear();
+          let months = end.getUTCMonth() - start.getUTCMonth();
+          let days = end.getUTCDate() - start.getUTCDate();
+          let hours = end.getUTCHours() - start.getUTCHours();
+          let minutes = end.getUTCMinutes() - start.getUTCMinutes();
+          let seconds = end.getUTCSeconds() - start.getUTCSeconds();
+
+          if (seconds < 0) {
+            seconds += 60;
+            minutes--;
+          }
+          if (minutes < 0) {
+            minutes += 60;
+            hours--;
+          }
+          if (hours < 0) {
+            hours += 24;
+            days--;
+          }
+          if (days < 0) {
+            const prevMonth = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), 0));
+            days += prevMonth.getUTCDate();
+            months--;
+          }
+          if (months < 0) {
+            months += 12;
+            years--;
+          }
+
+          return { years, months, days, hours, minutes, seconds };
+        }
+
+        function updateTimerElements(ids, values, labels) {
+          for (const unit in values) {
+            const el = document.getElementById(ids[unit]);
+            if (el) el.textContent = values[unit].toString().padStart(2, "0");
+            const labelEl = document.getElementById("label-" + unit + (ids === localIds ? "-local" : "-utc"));
+            if (labelEl) labelEl.textContent = labels[unit];
+          }
+        }
+
+        function updateTexts() {
+          const t = translations[currentLang];
+          if (!t) return;
+
+          developmentTextEl.textContent = t.developmentText;
+          subtitleGMTEl.textContent = t.subtitleGMT;
+
+          const tzOffsetMinutes = new Date().getTimezoneOffset();
+          const offsetHours = -tzOffsetMinutes / 60;
+          const offsetStr = offsetHours >= 0 ? "+" + offsetHours : offsetHours.toString();
+
+          const timeZoneName = Intl.DateTimeFormat().resolvedOptions().timeZone || t.localTimezoneText;
+
+          footerEl.textContent = t.footer(offsetStr, timeZoneName);
+
+          const langKeys = Object.keys(translations);
+          const currentIndex = langKeys.indexOf(currentLang);
+          const nextIndex = (currentIndex + 1) % langKeys.length;
+          const nextLangName = translations[langKeys[nextIndex]].name;
+
+          langSwitcherBtn.textContent = nextLangName;
+          langSwitcherBtn.title = `Switch language (Current: ${t.name})`;
+        }
+
+        function updateTimers() {
+          const now = new Date();
+
+          const diffLocal = diffDetailed(startDate, now);
+
+          const nowUTC = new Date(Date.UTC(
+            now.getUTCFullYear(),
+            now.getUTCMonth(),
+            now.getUTCDate(),
+            now.getUTCHours(),
+            now.getUTCMinutes(),
+            now.getUTCSeconds()
+          ));
+          const diffUTC = diffDetailed(startDate, nowUTC);
+
+          const t = translations[currentLang];
+          if (!t) return;
+
+          updateTimerElements(localIds, diffLocal, t.labels);
+          updateTimerElements(utcIds, diffUTC, t.labels);
+        }
+
+        langSwitcherBtn.addEventListener("click", () => {
+          const langKeys = Object.keys(translations);
+          let currentIndex = langKeys.indexOf(currentLang);
+          currentIndex = (currentIndex + 1) % langKeys.length;
+          currentLang = langKeys[currentIndex];
+          localStorage.setItem("lang", currentLang);
+          updateTexts();
+          updateTimers();
         });
 
-        updateFooter();
-      }
-
-      langSwitcherBtn.addEventListener("click", () => {
-        let idx = supportedLangs.indexOf(currentLang);
-        idx = (idx + 1) % supportedLangs.length;
-        currentLang = supportedLangs[idx];
-        localStorage.setItem("lang", currentLang);
-        translatePage();
-      });
-
-      translatePage();
-      setInterval(updateAllTimes, 1000);
+        updateTexts();
+        updateTimers();
+        setInterval(updateTimers, 1000);
+      })();
     </script>
   </body>
 </html>
